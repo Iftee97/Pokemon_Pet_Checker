@@ -91,4 +91,8 @@ class PokeInfo extends Poke {
             })
             .catch(err => console.log(err));
     }
+
+    locationCleanup() {
+
+    }
 }
