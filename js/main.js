@@ -93,6 +93,6 @@ class PokeInfo extends Poke {
     }
 
     locationCleanup() {
-
+        const words = this.locationList.slice();
     }
 }
