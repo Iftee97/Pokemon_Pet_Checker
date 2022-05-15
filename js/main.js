@@ -13,10 +13,10 @@ function getFetch() {
             // console.log(potentialPet);
             potentialPet.getTypes();
             potentialPet.isItHousePet();
-            potentialPet.encounterInfo();
             let decision = '';
             if (potentialPet.housePet) {
-                decision = `${potentialPet.name} is small, light and safe enough to be a good house pet!`;
+                decision = `${potentialPet.name} is small, light and safe enough to be a good house pet! You can find ${potentialPet.name} in the following location(s):`;
+                potentialPet.encounterInfo();
             } else {
                 decision = `${potentialPet.name} would not be a good pet because ${potentialPet.reason.join(' and ')}`;
             }
@@ -44,8 +44,7 @@ class Poke {
         for (let property of this.types) {
             this.typeList.push(property.type.name);
         }
-        console.log(this.typeList);
-        // return this.typeList;
+        // console.log(this.typeList);
     }
 
     weightToPounds(weight) {
@@ -84,11 +83,12 @@ class PokeInfo extends Poke {
         fetch(this.locationURL)
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 for (const item of data) {
                     this.locationList.push(item.location_area.name);
                 }
-                console.log(this.locationCleanup());
+                let target = document.getElementById('locations');
+                target.innerText = this.locationCleanup();
             })
             .catch(err => console.log(err));
     }
@@ -98,7 +98,7 @@ class PokeInfo extends Poke {
         for (let i = 0; i < words.length; i++) {
             words[i] = words[i][0].toUpperCase() + words[i].slice(1);
         }
-        console.log(words);
+        // console.log(words);
         return words.join(' ');
     }
 }
