@@ -85,14 +85,18 @@ class PokeInfo extends Poke {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                for (let item of data) {
-                    this.locationList.push(item.location_area_encounters.name);
+                for (const item of data) {
+                    this.locationList.push(item.location_area.name);
                 }
+                console.log(this.locationList);
+                console.log(this.locationCleanup());
             })
             .catch(err => console.log(err));
     }
 
     locationCleanup() {
         const words = this.locationList.slice(0, 5).join(', ').replaceAll('-', ' ').split(' ');
+        console.log(this.locationList);
+        return words;
     }
 }
