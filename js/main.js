@@ -19,6 +19,7 @@ function getFetch() {
                 potentialPet.encounterInfo();
             } else {
                 decision = `${potentialPet.name} would not be a good pet because ${potentialPet.reason.join(' and ')}`;
+                document.getElementById('locations').innerText = '';
             }
             document.querySelector('h2').innerText = decision;
             document.querySelector('img').src = potentialPet.image;
