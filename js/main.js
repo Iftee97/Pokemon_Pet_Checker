@@ -22,6 +22,7 @@ function getFetch() {
                 document.getElementById('locations').innerText = '';
             }
             document.querySelector('h2').innerText = decision;
+            document.querySelector('h2').style.textTransform = 'capitalize';
             document.querySelector('img').src = potentialPet.image;
         })
         .catch((err) => {
