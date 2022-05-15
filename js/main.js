@@ -10,7 +10,7 @@ function getFetch() {
             // console.log(data);
             const { name, height, weight, types, sprites, location_area_encounters } = data; // destructuring properties from data
             const potentialPet = new PokeInfo(name, height, weight, types, sprites.other['official-artwork'].front_default, location_area_encounters);
-            console.log(potentialPet);
+            // console.log(potentialPet);
             potentialPet.getTypes();
             potentialPet.isItHousePet();
             potentialPet.encounterInfo();
@@ -88,7 +88,6 @@ class PokeInfo extends Poke {
                 for (const item of data) {
                     this.locationList.push(item.location_area.name);
                 }
-                console.log(this.locationList);
                 console.log(this.locationCleanup());
             })
             .catch(err => console.log(err));
@@ -96,7 +95,10 @@ class PokeInfo extends Poke {
 
     locationCleanup() {
         const words = this.locationList.slice(0, 5).join(', ').replaceAll('-', ' ').split(' ');
-        console.log(this.locationList);
-        return words;
+        for (let i = 0; i < words.length; i++) {
+            words[i] = words[i][0].toUpperCase() + words[i].slice(1);
+        }
+        console.log(words);
+        return words.join(' ');
     }
 }
